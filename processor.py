@@ -35,9 +35,9 @@ class PaymentProcessor(BasePaymentProcessor):
             stripe_token = stripe.Token.retrieve(token.payment_token)
             return not stripe_token.used
         except Exception, e:
-            self.log_extra("Exception while lookup token %s: %s", token.stripe_token, e)
+            self.log_extra("Exception while lookup token %s: %s", str(token), e)
 
-        return false
+        return False
 
     def capture_payment(self, testing=False, order=None, amount=None):
         if not order:
